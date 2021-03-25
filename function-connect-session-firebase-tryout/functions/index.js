@@ -18,23 +18,32 @@ var firebaseConfig = {
   appId: "1:859668436628:web:32fcc829845132db900681",
 };
 
+const runtimeOpts = {
+  timeoutSeconds: 10,
+  memory: "256MB",
+};
+
 // Initialize Firebase
 const ref = firebase.initializeApp(firebaseConfig);
 
-express().use(
+const app = express();
+app.use(cors({ origin: true }));
+app.use(
   session({
     store: new FirebaseStore({
       database: ref.database(),
+      reapInterval: 21600000, //default to 6 hrs
+      reapCallback: () => {
+        console.log("sessions reaped");
+      },
     }),
     secret: "keyboard cat",
     resave: true,
     saveUninitialized: true,
+    cookie: { maxAge: 21600000 },
   })
 );
 
-const app = express();
-app.use(cors({ origin: true }));
+require("./helloworld")(app);
 
-const { hello2 } = require("./helloworld.js");
-
-exports.helloworld2 = hello2;
+exports.helloworld2 = functions.runWith(runtimeOpts).https.onRequest(app);
