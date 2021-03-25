@@ -2,6 +2,8 @@ const functions = require("firebase-functions");
 
 const express = require("express");
 const session = require("express-session");
+const cors = require("cors");
+
 const FirebaseStore = require("connect-session-firebase")(session);
 const firebase = require("firebase-admin");
 
@@ -29,6 +31,9 @@ express().use(
     saveUninitialized: true,
   })
 );
+
+const app = express();
+app.use(cors({ origin: true }));
 
 const { hello2 } = require("./helloworld.js");
 
