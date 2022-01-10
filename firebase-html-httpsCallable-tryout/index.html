@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-storage.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Cloud Cafe</h1>
+
+    <div class="content">
+      <form id="add-cafe-form">
+        <input type="text" name="name" placeholder="Cafe name" />
+        <input type="text" name="city" placeholder="Cafe city" />
+        <button>Add cafe</button>
+      </form>
+
+      <ul id="cafe-list"></ul>
+    </div>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDK21LG5IV2ajFzVa1V0jZhAxR4ar37mrk",
+        authDomain: "lynked-demo-tryout.firebaseapp.com",
+        projectId: "lynked-demo-tryout",
+        storageBucket: "lynked-demo-tryout.appspot.com",
+        messagingSenderId: "335675372584",
+        appId: "1:335675372584:web:ab02b5849ff52bb5f1711d",
+        measurementId: "G-E4KY2LRKDF",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      var storage = firebase.storage();
+
+      firebase.functions().useEmulator("localhost", 5001);
+
+      var checkVer = firebase.functions().httpsCallable("api/checkVerPost");
+      checkVer().then((result) => {
+        // Read result of the Cloud Function.
+        console.log(result);
+      });
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>
