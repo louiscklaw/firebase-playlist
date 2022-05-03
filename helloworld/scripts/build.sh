@@ -2,6 +2,5 @@
 
 set -ex
 
-
-yarn
+yarn --dev
 

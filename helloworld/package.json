@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp_w": "nodemon -w src/pages --ext '*' --exec 'gulp' "
+    "gulp_w": "nodemon -w src/pages --ext '*' --exec 'gulp' ",
+    "dev": "yarn --dev && yarn gulp_w",
+    "gitUpdate": "git add . && git commit -m'helloworld,' && git pull && git push"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "gulp-less": "^4.0.1",
     "gulp-order": "^1.2.0",
     "gulp-pug": "^4.0.1",
-    "gulp-rename": "^1.4.0"
+    "gulp-rename": "^1.4.0",
+    "nodemon": "^2.0.16"
   }
 }
