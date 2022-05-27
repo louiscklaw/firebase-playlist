@@ -1,0 +1,14 @@
+{
+  "name": "firebase-functions-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "cd functions && npm install && firebase deploy -f --non-interactive --only functions:helloWorld && cd ..",
+    "gitUpdate": "git add . && git commit -m\"update firebase-functions-tryout, \" && git pull && git push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
